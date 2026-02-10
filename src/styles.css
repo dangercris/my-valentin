@@ -1,0 +1,439 @@
+/* ========== Variables y reset ========== */
+:root {
+  --bg-start: #fce4ec;
+  --bg-end: #f8bbd9;
+  --card-bg: rgba(255, 255, 255, 0.92);
+  --card-shadow: 0 8px 32px rgba(233, 30, 99, 0.12);
+  --card-shadow-hover: 0 12px 40px rgba(233, 30, 99, 0.18);
+  --primary: #c2185b;
+  --primary-hover: #ad1457;
+  --primary-light: #f48fb1;
+  --text: #4a148c;
+  --text-soft: #6a1b9a;
+  --border: rgba(194, 24, 91, 0.2);
+  --radius: 16px;
+  --radius-btn: 12px;
+  --font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-system);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* ========== App contenedor ========== */
+.app {
+  position: relative;
+  min-height: 100vh;
+  padding: 1rem;
+  padding-bottom: 2rem;
+}
+
+.app-bg {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(160deg, var(--bg-start) 0%, var(--bg-end) 50%, #e1bee7 100%);
+  z-index: -1;
+}
+
+.app-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255, 182, 193, 0.3) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.app-main {
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+/* ========== Pantallas ========== */
+.pantalla {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========== Intro ========== */
+.intro-pantalla {
+  text-align: center;
+  padding-top: 1.5rem;
+}
+
+.nomos-decor {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.titulo-intro {
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 0.25rem;
+}
+
+.subtitulo-intro {
+  font-size: 0.95rem;
+  color: var(--text-soft);
+  margin: 0 0 1rem;
+}
+
+.mapita {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-soft);
+}
+
+.ciudad { font-weight: 600; }
+.corazon-ruta { font-size: 1.25rem; }
+
+.intro-card {
+  text-align: left;
+}
+
+.intro-texto {
+  margin: 0 0 1.25rem;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+/* ========== Card ========== */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--card-shadow);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--card-shadow-hover);
+}
+
+.card.card-compact {
+  padding: 1.25rem;
+}
+
+/* ========== Botones ========== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.875rem 1.25rem;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primario {
+  background: var(--primary);
+  color: #fff;
+}
+
+.btn-primario:hover {
+  background: var(--primary-hover);
+}
+
+.btn-secundario {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--primary);
+  border: 2px solid var(--primary-light);
+}
+
+.btn-secundario:hover {
+  background: #fff;
+  border-color: var(--primary);
+}
+
+.btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.btn-group .btn {
+  min-height: 48px;
+}
+
+/* ========== Progress ========== */
+.progress-wrap {
+  margin-bottom: 1.5rem;
+}
+
+.progress-steps {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.progress-step {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.5);
+  transition: background 0.3s ease;
+}
+
+.progress-step.activo {
+  background: var(--primary-light);
+}
+
+.progress-step.completo {
+  background: var(--primary);
+}
+
+/* ========== SecretGame (pistas) ========== */
+.juego-pantalla h2 {
+  font-size: 1.25rem;
+  margin: 0 0 1rem;
+  color: var(--text);
+}
+
+.pista-card {
+  margin-bottom: 1.25rem;
+}
+
+.pista-card:last-of-type {
+  margin-bottom: 0;
+}
+
+.pista-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  margin-bottom: 0.5rem;
+}
+
+.pista-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: inherit;
+  font-size: 1rem;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-btn);
+  background: #fff;
+  color: var(--text);
+  transition: border-color 0.2s;
+}
+
+.pista-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.pista-input::placeholder {
+  color: #b0b0b0;
+}
+
+.pista-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: inherit;
+  font-size: 1rem;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-btn);
+  background: #fff;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.pista-select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* Acertijo de letras */
+.letras-puzzle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+
+.letra-caja {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  background: var(--primary-light);
+  color: var(--text);
+  border-radius: 8px;
+  border: 2px solid transparent;
+}
+
+.letra-caja.vacia {
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--text-soft);
+}
+
+.pista-hint {
+  font-size: 0.85rem;
+  color: var(--text-soft);
+  margin-top: 0.5rem;
+}
+
+/* Estado de pista */
+.pista-ok {
+  color: #2e7d32;
+  font-size: 0.9rem;
+  margin-top: 0.35rem;
+}
+
+.pista-error {
+  color: #c62828;
+  font-size: 0.9rem;
+  margin-top: 0.35rem;
+}
+
+/* Botón desbloqueado */
+.btn-desbloqueado {
+  margin-top: 1rem;
+}
+
+/* ========== FinalAsk ========== */
+.final-pantalla {
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.final-pantalla .card {
+  margin-bottom: 1rem;
+}
+
+.final-mensaje {
+  font-size: 1.05rem;
+  color: var(--text);
+  margin: 0 0 1.25rem;
+  line-height: 1.6;
+}
+
+.final-pregunta {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 1rem;
+  color: var(--primary);
+}
+
+.final-buttons .btn-group {
+  margin-top: 1rem;
+}
+
+/* Estado "ya dijo sí" */
+.final-celebracion {
+  padding: 1.5rem 0;
+}
+
+.final-celebracion .mensaje-si {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0 0 1rem;
+}
+
+/* Confetti contenedor */
+.confetti-wrap {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  overflow: hidden;
+}
+
+/* ========== Confetti (CSS puro) ========== */
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: confetti-fall 3s ease-out forwards;
+}
+
+.confetti.corazon {
+  font-size: 14px;
+  width: auto;
+  height: auto;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* ========== Repetir ========== */
+.repetir-wrap {
+  margin-top: 1.5rem;
+}
+
+.repetir-wrap .btn-secundario {
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+/* ========== Accesibilidad y toques ========== */
+@media (hover: none) {
+  .btn:active {
+    transform: scale(0.98);
+  }
+}
+
+@media (min-width: 480px) {
+  .app {
+    padding: 2rem;
+  }
+}
