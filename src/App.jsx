@@ -42,6 +42,8 @@ export default function App() {
 
 // ========== Pantalla de intro ==========
 function Intro({ onEmpezar }) {
+  const numPistas = Object.keys(CONFIG.respuestas || {}).length
+  const textoPistas = numPistas === 1 ? 'Una pista' : `${numPistas} pistas`
   return (
     <section className="pantalla intro-pantalla" aria-labelledby="intro-title">
       <div className="nomos-decor">💃 💕 🕺🏻</div>
@@ -58,7 +60,7 @@ function Intro({ onEmpezar }) {
       </div>
       <Card className="intro-card">
         <p className="intro-texto">
-          Te preparé un mini juego de código secreto. Tres pistas, solo tú sabes las respuestas.
+          Te preparé un mini juego de código secreto. {textoPistas}, solo tú sabes las respuestas.
         </p>
         <button
           type="button"
